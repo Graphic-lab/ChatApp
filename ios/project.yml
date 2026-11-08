@@ -1,0 +1,61 @@
+name: HeartToHeart
+options:
+  bundleIdPrefix: be.conceptlab
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config/App.xcconfig
+  Release: Config/App.xcconfig
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift
+    from: 2.20.0
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
+targets:
+  HeartToHeart:
+    type: application
+    platform: iOS
+    sources:
+      - HeartToHeart
+    dependencies:
+      - package: Supabase
+    info:
+      path: HeartToHeart/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Heart to Heart
+        UILaunchScreen: {}
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIBackgroundModes: [audio]
+        NSMicrophoneUsageDescription: Om je spraakbericht op te nemen.
+        NSSpeechRecognitionUsageDescription: Om je spraakbericht om te zetten naar tekst, zodat het vertaald kan worden.
+        SUPABASE_URL: $(SUPABASE_URL)
+        SUPABASE_ANON_KEY: $(SUPABASE_ANON_KEY)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+  HeartToHeartTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - HeartToHeartTests
+    dependencies:
+      - target: HeartToHeart
+schemes:
+  HeartToHeart:
+    build:
+      targets:
+        HeartToHeart: all
+        HeartToHeartTests: [test]
+    test:
+      targets:
+        - HeartToHeartTests

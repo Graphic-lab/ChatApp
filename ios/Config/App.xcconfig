@@ -1,0 +1,4 @@
+// Shared build settings. Secrets live in Secrets.xcconfig (git-ignored).
+// Copy Secrets.example.xcconfig to Secrets.xcconfig and fill in your values.
+APP_BUNDLE_ID = be.conceptlab.hearttoheart
+#include? "Secrets.xcconfig"

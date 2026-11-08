@@ -1,0 +1,18 @@
+# Separate repo (Lovable POC)
+heart-to-heart-ukrainian-dutch/
+
+# Secrets
+ios/Config/Secrets.xcconfig
+.env
+.env.*
+
+# Generated / build
+ios/HeartToHeart.xcodeproj/
+ios/.build/
+ios/DerivedData/
+*.xcuserstate
+xcuserdata/
+supabase/tests/node_modules/
+
+# macOS
+.DS_Store
